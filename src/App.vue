@@ -2,7 +2,13 @@
   <div id="app">
     <main>
       <div class="search-box">
-        <input type="text" class="search-bar" placeholder="Search..." />
+        <input
+          type="text"
+          class="search-bar"
+          placeholder="Search..."
+          @keypress="fetchWeather"
+          v-model="cityName"
+        />
       </div>
     </main>
   </div>
@@ -11,6 +17,25 @@
 <script>
 export default {
   name: "App",
+  data() {
+    return {
+      API_KEY: "091dae33e14b9ff632dfadae805d202e",
+      baseUrl: "api.openweathermap.org/data/2.5/weather",
+      cityName: "",
+      weather: {},
+    };
+    // api.openweathermap.org/data/2.5/weather?q={city name}&appid={API key}
+  },
+  methods: {
+    fetchWeather(e) {
+      if (e.key === "Enter") {
+        const fetchURL = `${this.baseUrl}?q=${this.cityName}&appid=${this.API_KEY}`;
+        fetch(fetchURL).then((res) => {
+          console.log(res.json());
+        });
+      }
+    },
+  },
 };
 </script>
 

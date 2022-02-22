@@ -1,5 +1,5 @@
 <template>
-  <div id="app">
+  <div id="app" :class="{ 'bg-cold': temp < 15, 'bg-warm': temp > 15 }">
     <main>
       <div class="search-box">
         <input
@@ -41,6 +41,7 @@ export default {
       cityName: "",
       weather: {},
       isShown: false,
+      temp: null,
     };
   },
   methods: {
@@ -62,6 +63,7 @@ export default {
       if (data) {
         this.isShown = true;
         this.weather = data;
+        this.temp = this.weather.main.temp;
       }
     },
     dateBuilder() {
@@ -110,11 +112,18 @@ body {
   font-family: "montserrat", sans-serif;
 }
 #app {
-  background-image: url("./assets/cold-bg.jpeg");
   background-size: cover;
   background-position: bottom;
   transition: 0.4s;
 }
+.bg-warm {
+  background-image: url("./assets/warm-bg.jpeg");
+}
+
+.bg-cold {
+  background-image: url("./assets/cold-bg.jpeg");
+}
+
 main {
   min-height: 100vh;
   padding: 25px;

@@ -20,20 +20,26 @@ export default {
   data() {
     return {
       API_KEY: "091dae33e14b9ff632dfadae805d202e",
-      baseUrl: "api.openweathermap.org/data/2.5/weather",
+      baseUrl: "https://api.openweathermap.org/data/2.5/",
       cityName: "",
-      weather: {},
+      weather: null,
     };
-    // api.openweathermap.org/data/2.5/weather?q={city name}&appid={API key}
   },
   methods: {
     fetchWeather(e) {
       if (e.key === "Enter") {
-        const fetchURL = `${this.baseUrl}?q=${this.cityName}&appid=${this.API_KEY}`;
-        fetch(fetchURL).then((res) => {
-          console.log(res.json());
-        });
+        const fetchURL = `${this.baseUrl}weather?q=${this.cityName}&appid=${this.API_KEY}`;
+        fetch(fetchURL)
+          .then((res) => {
+            return res.json();
+          })
+          .then((res) => {
+            console.log(res);
+          });
       }
+    },
+    setWeather(data) {
+      this.weather = data;
     },
   },
 };

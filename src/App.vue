@@ -10,6 +10,21 @@
           v-model="cityName"
         />
       </div>
+
+      <section class="weather-wrap" v-if="isShown === true">
+        <div class="location-box">
+          <div class="location">
+            {{ weather.name }}, {{ weather.sys.country }}
+          </div>
+          <div class="date">
+            {{ dateBuilder() }}
+          </div>
+        </div>
+        <div class="weather-box">
+          <div class="temp">{{ Math.round(weather.main.temp) }}</div>
+          <div class="weather">{{ weather.weather[0].main }}</div>
+        </div>
+      </section>
     </main>
   </div>
 </template>
@@ -22,24 +37,62 @@ export default {
       API_KEY: "091dae33e14b9ff632dfadae805d202e",
       baseUrl: "https://api.openweathermap.org/data/2.5/",
       cityName: "",
-      weather: null,
+      weather: {},
+      isShown: false,
     };
   },
   methods: {
     fetchWeather(e) {
       if (e.key === "Enter") {
-        const fetchURL = `${this.baseUrl}weather?q=${this.cityName}&appid=${this.API_KEY}`;
+        const fetchURL = `${this.baseUrl}weather?q=${this.cityName}&appid=${this.API_KEY}&units=metric`;
         fetch(fetchURL)
           .then((res) => {
             return res.json();
           })
           .then((res) => {
-            console.log(res);
-          });
+            return this.setWeather(res);
+          })
+          .catch((err) => console.log(err));
       }
     },
     setWeather(data) {
-      this.weather = data;
+      console.log(data);
+      if (data) {
+        this.isShown = true;
+        this.weather = data;
+      }
+    },
+    dateBuilder() {
+      const d = new Date();
+      let months = [
+        "January",
+        "February",
+        "March",
+        "April",
+        "May",
+        "June",
+        "July",
+        "August",
+        "September",
+        "October",
+        "November",
+        "December",
+      ];
+      let days = [
+        "Sunday",
+        "Monday",
+        "Tuesday",
+        "Wednesday",
+        "Thursday",
+        "Friday",
+        "Saturday",
+      ];
+      const year = d.getFullYear();
+      const month = months[d.getMonth()];
+      const day = days[d.getDay()];
+      const date = d.getDate();
+      const today = `${day} ${date} ${month} ${year}`;
+      return today;
     },
   },
 };

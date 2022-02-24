@@ -4,8 +4,9 @@
 
 도시명을 검색하여 날씨를 알려주는 뷰 기반 앱웹
 
-![스크린샷 2022-02-22 오후 10 10 18](https://user-images.githubusercontent.com/78582073/155139790-1a769bab-d8a9-4965-abed-c17e0d45d83d.png)
-![스크린샷 2022-02-22 오후 10 18 39](https://user-images.githubusercontent.com/78582073/155140265-12934b91-2a53-49cb-885b-b3d54bd068a5.png)
+<img src="https://user-images.githubusercontent.com/78582073/155139790-1a769bab-d8a9-4965-abed-c17e0d45d83d.png" width="50%"/>
+<img src="https://user-images.githubusercontent.com/78582073/155140265-12934b91-2a53-49cb-885b-b3d54bd068a5.png" width="50%"/>
+
 
 ## 기능
 

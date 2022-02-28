@@ -2,16 +2,17 @@
   "name": "weather-appweb",
   "version": "0.1.0",
   "private": true,
+  "homepage": "https://devVenny.github.io/weather-appweb/",
   "scripts": {
     "serve": "vue-cli-service serve",
     "build": "vue-cli-service build",
     "lint": "vue-cli-service lint",
-    "deploy": "gh-pages -d build",
-    "predeploy": "npm run build"
+    "deploy": "gh-pages -d dist",
+    "predeploy": "vue-cli-service build",
+    "clean": "gh-pages-clean"
   },
   "dependencies": {
     "core-js": "^3.6.5",
-    "gh-pages": "^3.2.3",
     "vue": "^3.0.0"
   },
   "devDependencies": {
@@ -21,7 +22,8 @@
     "@vue/compiler-sfc": "^3.0.0",
     "babel-eslint": "^10.1.0",
     "eslint": "^6.7.2",
-    "eslint-plugin-vue": "^7.0.0"
+    "eslint-plugin-vue": "^7.0.0",
+    "gh-pages": "^3.2.3"
   },
   "eslintConfig": {
     "root": true,
@@ -41,6 +43,5 @@
     "> 1%",
     "last 2 versions",
     "not dead"
-  ],
-  "homepage": "https://devVenny.github.io/weather-appweb/"
+  ]
 }
